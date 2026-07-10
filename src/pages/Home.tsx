@@ -72,7 +72,7 @@ export default function Home() {
               ))}
             </ul>
             <div className="border-t border-hairline mt-6 pt-5">
-              <p className="text-[13px] text-ink-48 leading-[1.6]">준비물 없음 · 설치 없음 · 코드 없음<br />궁금한 점은 교육운영팀으로 문의해 주세요.</p>
+              <p className="text-[13px] text-ink-48 leading-[1.6]">준비물 없음 · 설치 없음 · 코드 없음<br />궁금한 점은 유니브 1팀 신상현에게 문의해 주세요.</p>
             </div>
           </aside>
         </div>
