@@ -61,7 +61,7 @@ export default function Ep1() {
         <LessonSection no="03" title="요청 한 번의 왕복 여정"
           desc="로그인 버튼을 한 번 누르면 시스템 안에서 어떤 일이 벌어질까요. 직접 확인해 보세요.">
           <DemoPanel title="로그인 요청 시뮬레이터"
-            sub="버튼을 누르면 요청이 프론트엔드 → API → 백엔드 → DB를 거쳐 돌아오는 과정을 단계별로 보여줍니다.">
+            sub="버튼을 누르면 왼쪽 화면(프론트엔드)이 실제로 폼 → 확인 중 → 환영으로 바뀌고, 오른쪽에서 요청이 API → 백엔드 → DB를 왕복하는 과정을 함께 보여줍니다.">
             <Ep1Journey />
           </DemoPanel>
         </LessonSection>
