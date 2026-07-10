@@ -33,7 +33,7 @@ export default function Ep2Quiz() {
       <div>
         <div className="text-[19px] font-semibold tracking-[-0.374px] mb-4">
           {score === QS.length
-            ? `만점! ${score}/${QS.length} — 커피 쿠폰의 주인공입니다 🎉`
+            ? `만점! ${score}/${QS.length} — 커피 쿠폰의 주인공입니다`
             : `완료! ${score}/${QS.length}점 — ${score >= 4 ? "아는 척 자격 충분합니다" : "카드를 복습하고 오면 만점 각입니다"}`}
         </div>
         <Pill sm onClick={reset}>다시 풀기</Pill>

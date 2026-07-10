@@ -80,7 +80,7 @@ export default function Ep5Roulette() {
     if (!ctx || spinning.current) return;
     spinning.current = true;
     setResult("");
-    setSub("돌아가는 중… 두구두구 🥁");
+    setSub("돌아가는 중…");
     const target = Math.random() * 2 * Math.PI + 2 * Math.PI * (5 + Math.floor(Math.random() * 3));
     const dur = 4200, t0 = performance.now(), a0 = angleRef.current;
     const ease = (t: number) => 1 - Math.pow(1 - t, 4);
@@ -111,7 +111,7 @@ export default function Ep5Roulette() {
             className="w-[320px] h-[320px] rounded-full shadow-[3px_5px_30px_0_rgba(0,0,0,0.22)]" />
         </div>
         <div className="flex-1 min-w-[260px]">
-          <Pill onClick={spin}>돌리기 🎲</Pill>
+          <Pill onClick={spin}>돌리기</Pill>
           <div className="text-[34px] font-semibold tracking-[-0.5px] min-h-[50px] my-3.5 mb-1">{result}</div>
           <div className="text-[14px] text-ink-48 min-h-[22px]">{sub}</div>
         </div>
