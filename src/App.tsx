@@ -80,7 +80,7 @@ function Footer() {
         </div>
         <div>
           <p className="text-[13px] font-semibold text-ink-80">안내</p>
-          <p className="text-[13px] text-ink-48 mt-2 leading-[1.7]">수강 문의: 교육운영팀<br />실습 자료는 각 강의 페이지에 포함되어 있습니다.</p>
+          <p className="text-[13px] text-ink-48 mt-2 leading-[1.7]">수강 문의: 유니브 1팀 신상현<br />실습 자료는 각 강의 페이지에 포함되어 있습니다.</p>
         </div>
       </div>
       <p className="max-w-[1120px] mx-auto text-[11.5px] text-ink-48 mt-10 pt-5 border-t border-hairline">
