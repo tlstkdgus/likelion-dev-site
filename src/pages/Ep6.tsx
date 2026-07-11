@@ -28,6 +28,16 @@ const TOOLS = [
   ["운영 · 공통", "스프레드시트 정리, 감정 소모가 큰 메일(거절·독촉) 초안, 설문 문항 설계."],
 ] as const;
 
+const AI_TOOLS: { icon: IconName; cat: string; tools: string[]; when: string }[] = [
+  { icon: "pen", cat: "글쓰기 · 기획", tools: ["Claude", "ChatGPT", "Gemini"], when: "기획서·메일·카피 초안, 아이데이션, 긴 글 요약" },
+  { icon: "search", cat: "리서치 · 검색", tools: ["Perplexity", "Notion AI"], when: "출처가 붙는 자료 조사, 사내 문서 검색·요약" },
+  { icon: "chart", cat: "슬라이드 · 문서", tools: ["Gamma", "Canva"], when: "초안 슬라이드 자동 생성, 문서 디자인" },
+  { icon: "layers", cat: "이미지 · 디자인", tools: ["Midjourney", "Adobe Firefly", "Figma AI"], when: "컨셉 이미지, 시안, 배너 목업 소통" },
+  { icon: "play", cat: "영상 · 음성", tools: ["Runway", "ElevenLabs", "HeyGen"], when: "숏폼 영상, 더빙·성우, 아바타 발표" },
+  { icon: "message", cat: "회의 · 기록", tools: ["Otter", "Fireflies"], when: "회의 자동 녹취·요약, 액션아이템 추출" },
+  { icon: "zap", cat: "프로토타입", tools: ["v0", "Bolt", "Claude Code"], when: "코딩 없이 동작하는 시안 — 5강의 바이브 코딩" },
+];
+
 const HOMEWORK = [
   "이번 주 반복 업무 하나를 골라, AI에게 초안을 맡겨 봅니다.",
   "'이런 느낌' 대신 좋은 예시 두 개를 붙여서 요청해 봅니다.",
@@ -143,7 +153,35 @@ export default function Ep6() {
           </Reveal>
         </LessonSection>
 
-        <LessonSection no="06" title="6주의 여정을 마치며"
+        <LessonSection no="06" title="요즘 쓰기 좋은 AI 툴 모음"
+          desc="작업 유형별 대표 도구입니다. 완벽한 순위표가 아니라, 어디서부터 손대면 좋을지의 출발점 — '이런 느낌' 대신 바로 하나 열어 써보세요.">
+          <Reveal>
+            <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4 mt-6">
+              {AI_TOOLS.map((x) => (
+                <div key={x.cat} className="rounded-[14px] border border-hairline p-6">
+                  <div className="flex items-center gap-2.5">
+                    <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-[#eaf3ff] text-primary flex-none">
+                      <Icon name={x.icon} size={18} />
+                    </span>
+                    <p className="text-[16px] font-semibold tracking-[-0.3px]">{x.cat}</p>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mt-3.5">
+                    {x.tools.map((t) => (
+                      <span key={t} className="inline-flex items-center bg-parchment rounded-full px-3 py-1 text-[13px] font-medium">{t}</span>
+                    ))}
+                  </div>
+                  <p className="text-[13.5px] text-ink-48 mt-3 leading-[1.55]">이럴 때 — {x.when}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+          <Note warn label="갱신 주의">
+            AI 툴 판은 분기마다 바뀝니다. 이 목록은 2026년 상반기 기준이니 팀에서 주기적으로 업데이트하세요.
+            그리고 회사 기밀·개인정보 입력은 반드시 각 툴의 보안 정책을 확인한 뒤에.
+          </Note>
+        </LessonSection>
+
+        <LessonSection no="07" title="6주의 여정을 마치며"
           desc="구조가 보이고, 언어가 들리고, 협업이 이해되고, 요청이 달라지고, 직접 만들었고, 흐름까지 읽게 됐습니다.">
           <Reveal>
             <div className="flex flex-wrap gap-2.5 mt-6">

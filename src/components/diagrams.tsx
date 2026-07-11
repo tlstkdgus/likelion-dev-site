@@ -498,6 +498,48 @@ export function ChatbotVsAgent() {
   );
 }
 
+/* ───────────────────────── Ep1 · 외부 연동 (별형 연결) ───────────────────────── */
+export function ExternalIntegrations() {
+  const cx0 = 360, cy0 = 150;
+  const sats: [number, number, string, string][] = [
+    [150, 66, "결제 (PG)", "토스페이먼츠 등"],
+    [570, 66, "지도", "카카오맵·구글맵"],
+    [150, 234, "소셜 로그인", "카카오·구글·애플"],
+    [570, 234, "알림", "알림톡·SMS"],
+  ];
+  return (
+    <Frame caption="결제·지도·로그인·알림은 우리가 직접 안 만들고, 검증된 외부 전문 서비스를 API로 연결해 씁니다. 우리 서비스가 중심이고, 어려운 기능은 바깥에서 빌려오는 구조입니다.">
+      <svg viewBox="0 0 720 300" aria-label="우리 서비스를 중심으로 외부 서비스들이 API로 연결된 구조" {...svgProps}>
+        {/* 연결선 */}
+        {sats.map(([x, y]) => (
+          <line key={`l${x}${y}`} x1={cx0} y1={cy0} x2={x} y2={y} stroke={C.blue} strokeWidth={1.5} opacity={0.55} />
+        ))}
+        {/* API 칩 */}
+        {sats.map(([x, y]) => {
+          const mx = (cx0 + x) / 2, my = (cy0 + y) / 2;
+          return (
+            <g key={`c${x}${y}`}>
+              <rect x={mx - 18} y={my - 10} width={36} height={20} rx={10} fill="#fff" stroke={C.hair} />
+              <text x={mx} y={my + 4} textAnchor="middle" fontSize={10} fontWeight={600} fill={C.blue}>API</text>
+            </g>
+          );
+        })}
+        {/* 위성 노드 */}
+        {sats.map(([x, y, name, ex]) => (
+          <g key={`s${x}${y}`}>
+            <rect x={x - 70} y={y - 25} width={140} height={50} rx={13} fill="#fff" stroke={C.hair} />
+            <text x={x} y={y - 2} textAnchor="middle" fontSize={13.5} fontWeight={600} fill={C.ink}>{name}</text>
+            <text x={x} y={y + 15} textAnchor="middle" fontSize={10.5} fill={C.muted}>{ex}</text>
+          </g>
+        ))}
+        {/* 중심 */}
+        <rect x={cx0 - 80} y={cy0 - 32} width={160} height={64} rx={15} fill={C.fillSoft} stroke={C.blue} strokeWidth={1.5} />
+        <text x={cx0} y={cy0 + 5} textAnchor="middle" fontSize={15} fontWeight={600} fill={C.blue}>우리 서비스</text>
+      </svg>
+    </Frame>
+  );
+}
+
 /* ───────────────────────── Home · 커리큘럼 여정 로드맵 ───────────────────────── */
 export function CurriculumRoadmap() {
   const stops = ["구조", "언어", "협업", "요청", "AI 실습", "AI 흐름"];

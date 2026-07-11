@@ -1,8 +1,8 @@
 import EpLayout from "../components/EpLayout";
 import Ep1Journey from "../components/Ep1Journey";
-import { type IconName } from "../components/Icon";
+import Icon, { type IconName } from "../components/Icon";
 import { DemoPanel, DefRow, LessonSection, Note, Reveal } from "../components/ui";
-import { RestaurantFlow } from "../components/diagrams";
+import { RestaurantFlow, ExternalIntegrations } from "../components/diagrams";
 
 const MAP: { icon: IconName; res: string; dev: string; desc: string }[] = [
   { icon: "home", res: "홀", dev: "프론트엔드", desc: "사용자가 보는 화면과 버튼. 내 폰과 브라우저에서 실행됩니다." },
@@ -18,6 +18,19 @@ const JOBS: { icon: IconName; t: string; d: string }[] = [
   { icon: "layers", t: "풀스택", d: "홀과 주방 겸업" },
   { icon: "wrench", t: "데브옵스", d: "건물 관리 — 사이트 전체 다운은 이분" },
   { icon: "phone", t: "모바일", d: "앱 전용 홀 담당" },
+];
+
+const EXTERNAL: { icon: IconName; field: string; ex: string; desc: string }[] = [
+  { icon: "lock", field: "결제", ex: "토스페이먼츠 · PG사", desc: "카드 결제를 직접 만들면 보안 인증만 몇 달. 전문 결제사(PG)에 맡깁니다." },
+  { icon: "target", field: "지도", ex: "카카오맵 · 구글맵", desc: "위치 검색과 길찾기를 직접 만들 순 없죠. 지도 회사 것을 붙입니다." },
+  { icon: "users", field: "소셜 로그인", ex: "카카오·구글·애플", desc: "'카카오로 시작하기' — 비밀번호를 우리가 직접 받지 않아도 됩니다." },
+  { icon: "message", field: "알림", ex: "알림톡 · SMS · 푸시", desc: "주문 완료 문자, 카카오 알림톡도 전문 발송사를 거쳐 나갑니다." },
+];
+
+const LINK_TERMS: { icon: IconName; term: string; mean: string; desc: string }[] = [
+  { icon: "box", term: "SDK", mean: "= 갖다 붙이는 조립 키트", desc: "외부 기능을 쉽게 넣도록 미리 포장한 코드 묶음. \"SDK 붙였어요\" = 그 회사 키트를 넣었어요." },
+  { icon: "file", term: "오픈 API", mean: "= 외부에서 연결 가능한 창구", desc: "\"그거 API 열려 있어요?\" = 우리 프로그램과 연결할 통로가 있냐는 질문입니다." },
+  { icon: "refresh", term: "webhook (콜백)", mean: "= 끝나면 자동으로 통보", desc: "결제가 완료되면 그쪽에서 우리에게 되쏘는 신호. \"처리 끝나면 전화 주세요\"의 자동화 버전." },
 ];
 
 const F12 = [
@@ -68,7 +81,36 @@ export default function Ep1() {
           </DemoPanel>
         </LessonSection>
 
-        <LessonSection no="04" title="오늘 배운 것, 직접 확인하기"
+        <LessonSection no="04" title="우리 주방이 다 만들지 않습니다"
+          desc="결제·지도·로그인·알림 같은 어려운 기능은 회사가 직접 만들지 않고, 검증된 외부 전문 서비스를 API로 빌려 붙입니다. 반찬을 다 직접 담그지 않고 전문 업체에서 받아오는 것과 같습니다.">
+          <ExternalIntegrations />
+          <Reveal>
+            <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4 mt-6">
+              {EXTERNAL.map((x) => (
+                <div key={x.field} className="rounded-[14px] border border-hairline px-5 py-5">
+                  <span className="text-primary"><Icon name={x.icon} size={20} /></span>
+                  <p className="text-[15.5px] font-semibold mt-2.5">
+                    {x.field} <span className="text-[13px] text-ink-48 font-normal">· {x.ex}</span>
+                  </p>
+                  <p className="text-[13.5px] text-ink-48 mt-1 leading-[1.5]">{x.desc}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="mt-6 border border-hairline rounded-lg2 px-7 max-md:px-5">
+              {LINK_TERMS.map((t) => (
+                <DefRow key={t.term} icon={t.icon} term={t.term} mean={t.mean} desc={t.desc} />
+              ))}
+            </div>
+          </Reveal>
+          <Note warn label="주의">
+            카카오 로그인이 먹통이면 우리 서비스 로그인도 멈춥니다. 외부 연동은 편리하지만,
+            그 회사의 장애가 곧 우리 장애가 되기도 합니다 — "연동사 이슈"라는 말이 여기서 나옵니다.
+          </Note>
+        </LessonSection>
+
+        <LessonSection no="05" title="오늘 배운 것, 직접 확인하기"
           desc="개발자 도구(F12)는 아무것도 망가뜨리지 않습니다. 지금 이 페이지에서 바로 해볼 수 있습니다.">
           <Reveal>
             <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4 mt-6">
@@ -85,7 +127,7 @@ export default function Ep1() {
           </Reveal>
         </LessonSection>
 
-        <LessonSection no="05" title="그래서 누구를 찾아가야 하나요"
+        <LessonSection no="06" title="그래서 누구를 찾아가야 하나요"
           desc="증상별로 찾아갈 사람이 다릅니다. 직군의 이름과 담당 영역을 연결해 두세요.">
           <Reveal>
             <div className="mt-6 border border-hairline rounded-lg2 px-7 max-md:px-5">
