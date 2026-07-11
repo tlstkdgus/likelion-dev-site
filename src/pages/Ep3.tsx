@@ -2,6 +2,7 @@ import EpLayout from "../components/EpLayout";
 import Ep3GitSim from "../components/Ep3GitSim";
 import Icon from "../components/Icon";
 import { DemoPanel, LessonSection, Note, Reveal } from "../components/ui";
+import { BranchGraph, MergeConflict, DiffView } from "../components/diagrams";
 
 const FILES = ["보고서_최종.pptx", "보고서_최종_수정.pptx", "보고서_진짜최종.pptx", "보고서_진짜최종_이걸로(2).pptx"];
 const VALUES = [
@@ -24,96 +25,99 @@ const TOUR = [
 
 export default function Ep3() {
   return (
-    <EpLayout index={2} dark
+    <EpLayout index={2}
       cheat={'"그 기능 브랜치 따서 작업 중이신 거죠? 머지되면 알려주세요."'}
       cheatWhy="개발이 '완전히 끝나는' 시점을 정확히 짚는 말입니다. 머지가 진짜 완료 신호라는 것을 아는 사람은 의외로 드뭅니다.">
 
       <div className="max-w-[880px] mx-auto px-6 py-16 max-md:px-[18px]">
 
-        <LessonSection dark no="01" title="이 파일명이 익숙하다면"
+        <LessonSection no="01" title="이 파일명이 익숙하다면"
           desc="버전 관리를 파일명으로 하던 시대의 흔적입니다. 개발자들은 이 문제를 20년 전에 해결했습니다.">
           <Reveal>
             <div className="grid grid-cols-2 max-md:grid-cols-1 gap-10 mt-7 items-center">
               <div>
                 {FILES.map((f, i) => (
                   <div key={f} className={`flex items-center gap-3 px-5 py-3.5 rounded-[11px] border mt-2.5 ${
-                    i === 3 ? "border-skylink bg-[#1c2836]" : "border-[#3a3a3c] bg-tile2"}`}>
-                    <span className={i === 3 ? "text-skylink" : "text-[#8e8e93]"}><Icon name="file" size={16} /></span>
-                    <span className={`text-[13.5px] font-mono ${i === 3 ? "text-white font-semibold" : "text-[#aeaeb2]"}`}>{f}</span>
+                    i === 3 ? "border-primary bg-[#eaf3ff]" : "border-hairline bg-white"}`}>
+                    <span className={i === 3 ? "text-primary" : "text-ink-48"}><Icon name="file" size={16} /></span>
+                    <span className={`text-[13.5px] font-mono ${i === 3 ? "text-ink font-semibold" : "text-ink-48"}`}>{f}</span>
                   </div>
                 ))}
               </div>
               <div>
                 <p className="text-[24px] font-semibold leading-[1.35] tracking-[-0.4px]">그 해답이 Git —<br />파일의 모든 역사를 기록하는 시스템</p>
-                <p className="text-[15px] text-[#b0b0b5] mt-4 leading-[1.6]">되돌리고, 추적하고, 동시에 작업합니다. 전 세계 개발의 표준입니다.</p>
+                <p className="text-[15px] text-ink-48 mt-4 leading-[1.6]">되돌리고, 추적하고, 동시에 작업합니다. 전 세계 개발의 표준입니다.</p>
               </div>
             </div>
           </Reveal>
           <Reveal>
             <div className="grid grid-cols-3 max-md:grid-cols-1 gap-4 mt-10">
               {VALUES.map(([ic, t, d]) => (
-                <div key={t} className="bg-tile2 border border-[#3a3a3c] rounded-[14px] p-5">
-                  <span className="text-skylink"><Icon name={ic as never} size={22} /></span>
+                <div key={t} className="bg-white border border-hairline rounded-[14px] p-5">
+                  <span className="text-primary"><Icon name={ic as never} size={22} /></span>
                   <p className="text-[16px] font-semibold mt-3">{t}</p>
-                  <p className="text-[13px] text-[#b0b0b5] mt-1 leading-[1.5]">{d}</p>
+                  <p className="text-[13px] text-ink-48 mt-1 leading-[1.5]">{d}</p>
                 </div>
               ))}
             </div>
-            <Note dark>
-              <b className="text-skylink">Git</b>은 기술 자체, <b className="text-skylink">GitHub</b>는 그 기술로 협업하는 웹 서비스입니다.
+            <Note>
+              <b className="text-primary">Git</b>은 기술 자체, <b className="text-primary">GitHub</b>는 그 기술로 협업하는 웹 서비스입니다.
               메신저 기술과 카카오톡의 관계와 같습니다.
             </Note>
           </Reveal>
         </LessonSection>
 
-        <LessonSection dark no="02" title="핵심 개념 네 가지"
+        <LessonSection no="02" title="핵심 개념 네 가지"
           desc="Git의 수백 가지 명령어 중 비개발자가 알아야 할 것은 이 넷뿐입니다.">
+          <BranchGraph />
           <Reveal>
             {CONCEPTS.map(([t, m, d], i) => (
-              <div key={t} className="flex items-start gap-5 py-5 border-b border-[#333336] last:border-b-0">
-                <span className="text-[13px] font-semibold text-skylink tabular-nums flex-none mt-1">{String(i + 1).padStart(2, "0")}</span>
+              <div key={t} className="flex items-start gap-5 py-5 border-b border-[#ececee] last:border-b-0">
+                <span className="text-[13px] font-semibold text-primary tabular-nums flex-none mt-1">{String(i + 1).padStart(2, "0")}</span>
                 <div>
                   <div className="flex items-baseline gap-3 flex-wrap">
                     <span className="text-[16px] font-semibold">{t}</span>
-                    <span className="text-[14.5px] text-skylink">{m}</span>
+                    <span className="text-[14.5px] text-primary">{m}</span>
                   </div>
-                  <p className="text-[13.5px] text-[#b0b0b5] mt-1">{d}</p>
+                  <p className="text-[13.5px] text-ink-48 mt-1">{d}</p>
                 </div>
               </div>
             ))}
           </Reveal>
         </LessonSection>
 
-        <LessonSection dark no="03" title="협업 흐름 체험"
+        <LessonSection no="03" title="협업 흐름 체험"
           desc="개발자의 하루를 40초로 압축했습니다. 버튼을 순서대로 눌러 보세요.">
-          <DemoPanel dark title="Git 협업 흐름 시뮬레이터"
+          <DemoPanel title="Git 협업 흐름 시뮬레이터"
             sub="브랜치 생성 → 커밋 → PR → 머지. 각 단계에서 실제로 어떤 일이 일어나는지 로그로 보여줍니다.">
             <Ep3GitSim />
           </DemoPanel>
-          <Note dark label="참고">
+          <Note label="참고">
             같은 부분을 두 사람이 다르게 고치면 Git이 멈추고 사람을 부릅니다.
-            이것이 <b className="text-skylink">머지 컨플릭트</b> — 개발자가 한숨 쉬는 대표적인 이유입니다.
+            이것이 <b className="text-primary">머지 컨플릭트</b> — 개발자가 한숨 쉬는 대표적인 이유입니다.
           </Note>
+          <MergeConflict />
         </LessonSection>
 
-        <LessonSection dark no="04" title="GitHub 둘러보기"
+        <LessonSection no="04" title="GitHub 둘러보기"
           desc="회사 저장소가 아니어도 됩니다. 유명 오픈소스 프로젝트를 구경하는 것만으로 충분합니다.">
           <Reveal>
             <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4 mt-6">
               {TOUR.map(([t, d], i) => (
-                <div key={t} className="flex items-start gap-4 bg-tile2 border border-[#3a3a3c] rounded-[14px] px-5 py-4">
-                  <span className="text-[15px] font-semibold text-skylink tabular-nums flex-none">{i + 1}</span>
+                <div key={t} className="flex items-start gap-4 bg-white border border-hairline rounded-[14px] px-5 py-4">
+                  <span className="text-[15px] font-semibold text-primary tabular-nums flex-none">{i + 1}</span>
                   <div>
                     <p className="text-[15px] font-semibold tracking-[-0.25px]">{t}</p>
-                    <p className="text-[13px] text-[#b0b0b5] mt-1 leading-[1.5]">{d}</p>
+                    <p className="text-[13px] text-ink-48 mt-1 leading-[1.5]">{d}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <Note dark label="통역">
+            <Note label="통역">
               "PR 올렸어요" = 작업이 끝났으니 검토해 주세요 · "머지됐어요" = 검토 통과, 반영 완료.
             </Note>
           </Reveal>
+          <DiffView />
         </LessonSection>
       </div>
     </EpLayout>

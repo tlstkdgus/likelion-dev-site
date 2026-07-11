@@ -2,6 +2,7 @@ import EpLayout from "../components/EpLayout";
 import Ep2Cards from "../components/Ep2Cards";
 import Ep2Quiz from "../components/Ep2Quiz";
 import { DemoPanel, DefRow, LessonSection, Note, Reveal } from "../components/ui";
+import { DeployPipeline, KanbanBoard } from "../components/diagrams";
 
 const DEPLOY = [
   ["로컬", "개발자 본인 컴퓨터에서 개발"],
@@ -44,6 +45,7 @@ export default function Ep2() {
 
         <LessonSection no="03" title="배포 — 신메뉴가 매장에 나가는 길"
           desc="코드가 실제 서비스에 반영되는 과정에는 정해진 단계가 있습니다.">
+          <DeployPipeline />
           <Reveal>
             <div className="grid grid-cols-3 max-md:grid-cols-1 gap-4 mt-6">
               {DEPLOY.map(([t, d], i) => (
@@ -72,6 +74,7 @@ export default function Ep2() {
 
         <LessonSection no="04" title="일정 회의에서 나오는 말"
           desc="일정과 범위를 이야기할 때 반복적으로 등장하는 다섯 가지입니다.">
+          <KanbanBoard />
           <Reveal>
             <div className="mt-6 border border-hairline rounded-lg2 px-7 max-md:px-5">
               {SCHEDULE.map((s) => (

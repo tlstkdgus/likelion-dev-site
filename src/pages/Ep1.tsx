@@ -2,6 +2,7 @@ import EpLayout from "../components/EpLayout";
 import Ep1Journey from "../components/Ep1Journey";
 import { type IconName } from "../components/Icon";
 import { DemoPanel, DefRow, LessonSection, Note, Reveal } from "../components/ui";
+import { RestaurantFlow } from "../components/diagrams";
 
 const MAP: { icon: IconName; res: string; dev: string; desc: string }[] = [
   { icon: "home", res: "홀", dev: "프론트엔드", desc: "사용자가 보는 화면과 버튼. 내 폰과 브라우저에서 실행됩니다." },
@@ -45,6 +46,7 @@ export default function Ep1() {
 
         <LessonSection no="02" title="소프트웨어는 식당입니다"
           desc="이 대응표 하나면 오늘 수업의 절반이 끝납니다. 다섯 가지만 기억하세요.">
+          <RestaurantFlow />
           <Reveal>
             <div className="mt-6 border border-hairline rounded-lg2 px-7 max-md:px-5">
               {MAP.map((m) => (

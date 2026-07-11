@@ -1,6 +1,7 @@
 import EpLayout from "../components/EpLayout";
 import Ep4Builder from "../components/Ep4Builder";
 import { DemoPanel, LessonSection, Note, Reveal } from "../components/ui";
+import { IcebergDiagram, PingPongCompare } from "../components/diagrams";
 
 const MISUNDER = [
   ["\"버튼 하나만 추가하면 되죠?\"", "(\"기둥 하나만 옮기면 되죠?\")"],
@@ -35,6 +36,7 @@ export default function Ep4() {
 
         <LessonSection no="02" title="버튼 하나의 빙산"
           desc="'버튼 하나'가 사흘 걸리는 이유는, 보이는 것이 작업의 일부이기 때문입니다.">
+          <IcebergDiagram />
           <Reveal>
             <div className="mt-6 rounded-lg2 overflow-hidden border border-hairline">
               <div className="bg-white px-7 py-5 text-[15.5px]"><b>수면 위</b> — 버튼 하나 그리기 · <b className="text-primary">1시간</b></div>
@@ -57,6 +59,7 @@ export default function Ep4() {
 
         <LessonSection no="03" title="좋은 요청의 3요소"
           desc="현상, 재현 방법, 기대 동작. 세 가지가 갖춰진 요청은 핑퐁 없이 한 번에 처리됩니다.">
+          <PingPongCompare />
           <DemoPanel title="요청 품질 시뮬레이터"
             sub="3요소를 하나씩 켜면서 같은 요청이 어떻게 달라지는지, 예상 핑퐁 횟수가 어떻게 줄어드는지 확인해 보세요.">
             <Ep4Builder />

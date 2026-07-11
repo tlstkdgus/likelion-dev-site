@@ -2,6 +2,7 @@ import EpLayout from "../components/EpLayout";
 import Ep5Roulette from "../components/Ep5Roulette";
 import Icon from "../components/Icon";
 import { DemoPanel, LessonSection, Note, Reveal } from "../components/ui";
+import { TokenPredict, VibeLoop } from "../components/diagrams";
 
 const TERMS = [
   ["pen", "프롬프트", "AI에게 전달하는 주문서"],
@@ -39,6 +40,7 @@ export default function Ep5() {
               </p>
               <p className="text-[15px] text-ink-48 mt-4">코드도 결국 텍스트이기 때문에, 코드도 씁니다.</p>
             </div>
+            <TokenPredict />
             <div className="grid grid-cols-3 max-md:grid-cols-1 gap-4 mt-5">
               {TERMS.map(([ic, t, d]) => (
                 <div key={t} className="rounded-[14px] border border-hairline px-5 py-5">
@@ -61,6 +63,7 @@ export default function Ep5() {
             방금 여러분은 <b>요청 → 확인 → 수정 요청 → 반복</b>이라는 개발 프로세스를 목격했습니다.
             이것이 바이브 코딩이고, 기획자와 개발자가 하는 실제 개발 과정의 축소판입니다.
           </Note>
+          <VibeLoop />
         </LessonSection>
 
         <LessonSection no="03" title="그럼 개발자는 필요 없어지는가"

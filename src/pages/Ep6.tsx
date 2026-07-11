@@ -2,6 +2,7 @@ import EpLayout from "../components/EpLayout";
 import Ep6Agent from "../components/Ep6Agent";
 import Icon, { type IconName } from "../components/Icon";
 import { DemoPanel, LessonSection, Note, Reveal } from "../components/ui";
+import { AIEvolution, ChatbotVsAgent } from "../components/diagrams";
 
 const TRENDS = [
   ["하네스 엔지니어링", "AI에게 좋은 온보딩 주기", "아무리 똑똑한 신입도 매뉴얼과 권한 없이는 헤맵니다. 하네스는 AI가 일하는 주변 환경 전체(도구·지침서·작업 공간·검증 장치). '에이전트가 실수하면, 다시는 같은 실수를 못 하도록 환경을 고친다'는 접근이 2026년 업계의 핵심 화두입니다. 모델이 아니라 환경을 설계해 성과를 올리는 일이죠."],
@@ -43,6 +44,7 @@ export default function Ep6() {
 
         <LessonSection no="01" title="에이전트 — 묻고 답하기에서 '일 시키기'로"
           desc="올해 AI 판의 가장 큰 변화입니다. 여러 단계의 작업을 스스로 계획하고 도구를 사용하는 AI를 에이전트라고 부릅니다.">
+          <ChatbotVsAgent />
           <DemoPanel title="챗봇과 에이전트 비교"
             sub="같은 요청을 두 방식에 동시에 시켜 봅니다. 응답이 만들어지는 과정의 차이에 주목하세요.">
             <Ep6Agent />
@@ -51,6 +53,7 @@ export default function Ep6() {
 
         <LessonSection no="02" title="나머지 키워드 네 가지"
           desc="에이전트를 이해했다면, 나머지는 전부 '에이전트를 잘 부리는 방법'에 대한 키워드입니다.">
+          <AIEvolution />
           <Reveal>
             <div className="mt-6">
               {TRENDS.map(([t, m, d], i) => (

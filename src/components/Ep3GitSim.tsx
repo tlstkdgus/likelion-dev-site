@@ -63,7 +63,7 @@ export default function Ep3GitSim() {
         {acts.map((a) => (
           <Pill key={a.label} sm disabled={!a.enabledAt.includes(step)} onClick={a.run}>{a.label}</Pill>
         ))}
-        <Pill sm ghost dark onClick={reset}>리셋</Pill>
+        <Pill sm ghost onClick={reset}>리셋</Pill>
       </div>
       <div className="font-mono text-[12.5px] bg-[#1c1c1e] text-[#e6edf3] rounded-[11px] px-[18px] py-3.5 mt-[18px] min-h-[60px] leading-[1.7]">
         {log.map((l, i) => <div key={i} style={{ color: COLOR[l.cls] }}>{l.text}</div>)}

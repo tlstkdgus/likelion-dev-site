@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { EPISODES } from "../App";
 import Icon from "../components/Icon";
 import { Pill, Reveal } from "../components/ui";
+import { CurriculumRoadmap } from "../components/diagrams";
 
 const OUTCOMES = [
   "개발자 회의에서 오가는 용어의 90%를 이해한다",
@@ -99,6 +100,7 @@ export default function Home() {
         <div className="max-w-[1120px] mx-auto">
           <h2 className="text-[30px] max-md:text-[24px] font-semibold tracking-[-0.5px]">커리큘럼</h2>
           <p className="text-[15px] text-ink-48 mt-2">총 6강 · 각 강의에 라이브 실습이 포함되어 있습니다.</p>
+          <CurriculumRoadmap />
           <Reveal>
             <div className="mt-8 border border-hairline rounded-lg2 overflow-hidden">
               {EPISODES.map((e, i) => (
