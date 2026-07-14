@@ -10,7 +10,7 @@ const QS: Q[] = [
   { q: "Q5. 금요일 오후에 하면 안 되는 것은?", o: ["퇴근", "배포", "회의", "커피"], a: 1 },
   { q: "Q6. (보너스) “스테이징에서 터져요. 어제 머지된 PR 때문 같은데 롤백할까요?”의 통역은?", o: ["리허설 매장에서 문제 발견, 어제 합친 코드가 원인 같으니 되돌릴까요?", "무대가 무너졌으니 홍보팀에 연락하자", "스테이크가 타서 환불해야 한다", "PR(홍보)팀이 사고를 쳤다"], a: 0 },
 ];
-const PRAISE = ["정답!  커피 쿠폰에 한 걸음 더", "정답! 아는 척 레벨 업", "정답! 개발자들이 놀라기 시작합니다"];
+const PRAISE = ["정답! 수료에 한 걸음 더", "정답! 아는 척 레벨 업", "정답! 개발자들이 놀라기 시작합니다"];
 
 export default function Ep2Quiz() {
   const [idx, setIdx] = useState(0);
@@ -33,7 +33,7 @@ export default function Ep2Quiz() {
       <div>
         <div className="text-[19px] font-semibold tracking-[-0.374px] mb-4">
           {score === QS.length
-            ? `만점! ${score}/${QS.length} — 커피 쿠폰의 주인공입니다`
+            ? `만점! ${score}/${QS.length} — 완벽합니다`
             : `완료! ${score}/${QS.length}점 — ${score >= 4 ? "아는 척 자격 충분합니다" : "카드를 복습하고 오면 만점 각입니다"}`}
         </div>
         <Pill sm onClick={reset}>다시 풀기</Pill>

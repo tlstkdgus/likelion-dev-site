@@ -85,7 +85,7 @@ export default function Ep2() {
         </LessonSection>
 
         <LessonSection no="05" title="확인 퀴즈"
-          desc="여섯 문제 중 네 문제 이상 맞히면 수료 기준을 충족합니다. 만점자에게는 커피 쿠폰을 드립니다.">
+          desc="여섯 문제 중 네 문제 이상 맞히면 수료 기준을 충족합니다.">
           <DemoPanel title="용어 퀴즈"
             sub="보기를 클릭하면 즉시 채점됩니다. 다시 풀기는 횟수 제한이 없습니다.">
             <Ep2Quiz />
