@@ -7,6 +7,7 @@ import Ep3 from "./pages/Ep3";
 import Ep4 from "./pages/Ep4";
 import Ep5 from "./pages/Ep5";
 import Ep6 from "./pages/Ep6";
+import Glossary from "./pages/Glossary";
 
 export const EPISODES = [
   { path: "/lesson/1", no: 1, short: "소프트웨어 구조", title: "소프트웨어는 어떻게 만들어지는가", minutes: 35,
@@ -53,6 +54,11 @@ function GNav() {
               {e.no}강<span className="max-md:hidden"> · {e.short}</span>
             </Link>
           ))}
+          <Link to="/glossary"
+            className={`text-[12.5px] tracking-[-0.12px] no-underline whitespace-nowrap transition-opacity ${
+              pathname === "/glossary" ? "text-white font-semibold" : "text-[#d5d5da] opacity-80 hover:opacity-100"}`}>
+            용어 사전
+          </Link>
         </div>
       </div>
     </nav>
@@ -81,6 +87,7 @@ function Footer() {
         <div>
           <p className="text-[13px] font-semibold text-ink-80">안내</p>
           <p className="text-[13px] text-ink-48 mt-2 leading-[1.7]">수강 문의: 유니브 1팀 신상현<br />실습 자료는 각 강의 페이지에 포함되어 있습니다.</p>
+          <Link to="/glossary" className="inline-block text-[13px] text-primary no-underline mt-2">용어 사전 바로가기 →</Link>
         </div>
       </div>
       <p className="max-w-[1120px] mx-auto text-[11.5px] text-ink-48 mt-10 pt-5 border-t border-hairline">
@@ -103,6 +110,7 @@ export default function App() {
         <Route path="/lesson/4" element={<Ep4 />} />
         <Route path="/lesson/5" element={<Ep5 />} />
         <Route path="/lesson/6" element={<Ep6 />} />
+        <Route path="/glossary" element={<Glossary />} />
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
