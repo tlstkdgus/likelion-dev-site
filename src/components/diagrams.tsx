@@ -564,3 +564,86 @@ export function CurriculumRoadmap() {
     </Frame>
   );
 }
+
+/* ───────────────────────── 가이드 · 옵시디언 메모 → Claude 연결 ───────────────────────── */
+export function GuideNoteConnect() {
+  return (
+    <Frame caption="내 메모를 Claude에 한 번 연결해두면, 다음부터는 말로 시키기만 하면 Claude가 알아서 메모를 찾아 정리해 줍니다.">
+      <svg viewBox="0 0 680 190" aria-label="내 메모를 Claude에 연결하는 그림" {...svgProps}>
+        <defs>
+          <marker id="gncArr" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6" fill="none" stroke={C.blue} strokeWidth="1.4" />
+          </marker>
+          <marker id="gncArrM" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6" fill="none" stroke={C.muted} strokeWidth="1.3" />
+          </marker>
+        </defs>
+        <rect x={40} y={45} width={200} height={100} rx={15} fill="#fff" stroke={C.hair} />
+        <text x={140} y={72} textAnchor="middle" fontSize={14} fontWeight={600} fill={C.ink}>내 메모 (옵시디언)</text>
+        {[96, 113, 130].map((y) => <line key={y} x1={70} y1={y} x2={210} y2={y} stroke={C.hair} strokeWidth={3} strokeLinecap="round" />)}
+        <rect x={440} y={45} width={200} height={100} rx={15} fill={C.fillSoft} stroke={C.blue} strokeWidth={1.5} />
+        <text x={540} y={102} textAnchor="middle" fontSize={19} fontWeight={600} fill={C.blue}>Claude</text>
+        <line x1={240} y1={78} x2={436} y2={78} stroke={C.blue} strokeWidth={1.6} markerEnd="url(#gncArr)" />
+        <text x={338} y={66} textAnchor="middle" fontSize={12} fontWeight={600} fill={C.blue}>① 한 번 연결</text>
+        <line x1={436} y1={116} x2={240} y2={116} stroke={C.muted} strokeWidth={1.4} strokeDasharray="4 4" markerEnd="url(#gncArrM)" />
+        <text x={338} y={135} textAnchor="middle" fontSize={12} fill={C.muted}>② 찾아서 정리해 줌</text>
+      </svg>
+    </Frame>
+  );
+}
+
+/* ───────────────────────── 가이드 · Claude 커넥터 허브 ───────────────────────── */
+export function GuideConnectorHub() {
+  const cx = 340, cy = 135;
+  const sats: [number, number, string][] = [[130, 75, "노션"], [550, 75, "구글 드라이브"], [340, 235, "슬랙"]];
+  return (
+    <Frame caption="Claude에 노션·구글 드라이브·슬랙을 연결해두면, 자료를 일일이 복사해 넣지 않아도 “거기서 찾아서 해줘”라고 시킬 수 있습니다.">
+      <svg viewBox="0 0 680 280" aria-label="Claude에 여러 앱을 연결한 그림" {...svgProps}>
+        {sats.map(([x, y]) => <line key={`l${x}${y}`} x1={cx} y1={cy} x2={x} y2={y} stroke={C.blue} strokeWidth={1.5} opacity={0.55} />)}
+        {sats.map(([x, y, name]) => (
+          <g key={`s${x}${y}`}>
+            <rect x={x - 75} y={y - 24} width={150} height={48} rx={13} fill="#fff" stroke={C.hair} />
+            <text x={x} y={y + 5} textAnchor="middle" fontSize={14} fontWeight={600} fill={C.ink}>{name}</text>
+          </g>
+        ))}
+        <rect x={cx - 70} y={cy - 30} width={140} height={60} rx={15} fill={C.fillSoft} stroke={C.blue} strokeWidth={1.5} />
+        <text x={cx} y={cy + 7} textAnchor="middle" fontSize={18} fontWeight={600} fill={C.blue}>Claude</text>
+      </svg>
+    </Frame>
+  );
+}
+
+/* ───────────────────────── 가이드 · 기획 흐름 (매니패스트) ───────────────────────── */
+export function GuidePlanFlow() {
+  const steps: [string, string][] = [
+    ["아이디어", "머릿속 생각"],
+    ["기획서", "무엇을 왜"],
+    ["화면 스케치", "대략의 화면"],
+    ["개발팀 전달", "파일로 내보내기"],
+  ];
+  return (
+    <Frame caption="만들고 싶은 걸 채팅으로 설명하면, 아이디어 → 기획서 → 화면 스케치 순서로 정리해 주고, 개발팀에 건넬 파일까지 만들어 줍니다.">
+      <svg viewBox="0 0 720 150" aria-label="아이디어에서 개발팀 전달까지의 기획 흐름" {...svgProps}>
+        <defs>
+          <marker id="gpfArr" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6" fill="none" stroke={C.blue} strokeWidth="1.4" />
+          </marker>
+        </defs>
+        {steps.map(([t, d], i) => {
+          const x = 20 + i * 175;
+          const cx = x + 75;
+          const hi = i === 3;
+          return (
+            <g key={t}>
+              <rect x={x} y={42} width={150} height={66} rx={14}
+                fill={hi ? C.fillSoft : "#fff"} stroke={hi ? C.blue : C.hair} strokeWidth={hi ? 1.5 : 1} />
+              <text x={cx} y={78} textAnchor="middle" fontSize={15} fontWeight={600} fill={hi ? C.blue : C.ink}>{t}</text>
+              <text x={cx} y={97} textAnchor="middle" fontSize={11.5} fill={C.muted}>{d}</text>
+              {i < 3 && <line x1={x + 150} y1={75} x2={x + 171} y2={75} stroke={C.blue} strokeWidth={1.6} markerEnd="url(#gpfArr)" />}
+            </g>
+          );
+        })}
+      </svg>
+    </Frame>
+  );
+}
