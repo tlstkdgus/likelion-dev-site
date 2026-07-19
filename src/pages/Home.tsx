@@ -52,7 +52,7 @@ export default function Home() {
               <span className="inline-flex items-center gap-1.5"><Icon name="play" size={15} /> 실습 6개 내장</span>
             </div>
             <div className="mt-9 flex gap-3.5 flex-wrap">
-              <Pill href="#/lesson/1">1강 시작하기 <Icon name="arrow" size={15} /></Pill>
+              <Pill to="/lesson/1">1강 시작하기 <Icon name="arrow" size={15} /></Pill>
               <Pill href="#curriculum" ghost>커리큘럼 보기</Pill>
             </div>
           </div>
@@ -185,7 +185,7 @@ export default function Home() {
           </h2>
           <p className="text-[16px] text-[#b0b0b5] mt-4">첫 강의는 35분이면 충분합니다.</p>
           <div className="mt-8">
-            <Pill href="#/lesson/1">1강 · 소프트웨어는 어떻게 만들어지는가 <Icon name="arrow" size={15} /></Pill>
+            <Pill to="/lesson/1">1강 · 소프트웨어는 어떻게 만들어지는가 <Icon name="arrow" size={15} /></Pill>
           </div>
         </div>
       </section>

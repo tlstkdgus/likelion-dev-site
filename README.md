@@ -86,12 +86,13 @@ npm install
 npm run dev        # http://localhost:5173
 ```
 
-빌드 결과 미리보기: `dist/index.html`을 그대로 브라우저로 열어도 동작합니다 (`base: "./"`).
-
 ```bash
 npm run build      # tsc -b && vite build
 npm run preview    # http://localhost:4173
 ```
+
+> BrowserRouter를 쓰므로 `dist/index.html`을 file://로 직접 열면 동작하지 않습니다.
+> 빌드 결과 확인은 `npm run preview`를 사용하세요.
 
 ## 배포 (Vercel)
 
@@ -108,7 +109,13 @@ vercel --prod     # 프로덕션 배포
 3. Framework Preset: Vite (자동 감지) → Deploy
 
 빌드 설정은 자동 감지됩니다 (Build: `npm run build`, Output: `dist`).
-라우팅은 **HashRouter**라 Vercel rewrite 설정이 필요 없습니다.
+**BrowserRouter**를 쓰기 때문에 `vercel.json`에 rewrite 설정이 포함되어 있습니다 (모든 경로 → `index.html`).
+
+### 방문자 분석
+
+`@vercel/analytics`가 연결되어 있습니다. 실제 수집을 시작하려면
+**Vercel 대시보드 → 프로젝트 → Analytics 탭에서 Web Analytics를 켜야 합니다.**
+켜기 전까지는 데이터가 쌓이지 않으며, 소급 집계도 불가능합니다.
 
 ---
 

@@ -1,4 +1,5 @@
 import { useEffect, useRef, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 import Icon, { type IconName } from "./Icon";
 
 /** 스크롤 진입 시 부드럽게 나타나는 래퍼 */
@@ -18,10 +19,10 @@ export function Reveal({ children, className = "" }: { children: ReactNode; clas
 }
 
 export function Pill({
-  children, onClick, ghost = false, sm = false, disabled = false, href, dark = false,
+  children, onClick, ghost = false, sm = false, disabled = false, href, to, dark = false,
 }: {
   children: ReactNode; onClick?: () => void; ghost?: boolean; sm?: boolean;
-  disabled?: boolean; href?: string; dark?: boolean;
+  disabled?: boolean; href?: string; to?: string; dark?: boolean;
 }) {
   const cls = [
     "inline-flex items-center gap-2 rounded-full font-normal tracking-[-0.374px] transition-transform active:scale-95 cursor-pointer",
@@ -31,6 +32,7 @@ export function Pill({
       : "bg-primary text-white border-none",
     disabled ? "opacity-35 cursor-default" : "",
   ].join(" ");
+  if (to) return <Link className={cls} to={to}>{children}</Link>;
   if (href) return <a className={cls} href={href}>{children}</a>;
   return <button className={cls} onClick={onClick} disabled={disabled}>{children}</button>;
 }

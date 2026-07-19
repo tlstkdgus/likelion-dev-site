@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { HashRouter, Link, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Link, Route, Routes, useLocation } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import Home from "./pages/Home";
 import Ep1 from "./pages/Ep1";
 import Ep2 from "./pages/Ep2";
@@ -107,7 +108,7 @@ function Footer() {
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <GNav />
       <Routes>
@@ -123,6 +124,7 @@ export default function App() {
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
-    </HashRouter>
+      <Analytics />
+    </BrowserRouter>
   );
 }

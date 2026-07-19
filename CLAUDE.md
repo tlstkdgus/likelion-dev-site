@@ -6,8 +6,10 @@ Cowork(Claude)에서 제작을 시작했고, 이 시점부터 Claude Code로 이
 ## 기술 스택
 - React 18 + TypeScript (strict)
 - Tailwind CSS v4 (`@tailwindcss/vite` 플러그인, 설정 파일 없음 — `src/index.css`의 `@theme` 블록에 디자인 토큰)
-- Vite 6, `base: "./"` (file:// 로컬 열기 + Vercel 모두 대응)
-- react-router-dom **HashRouter** (Vercel rewrite 불필요. BrowserRouter로 바꾸려면 vercel.json rewrite 추가할 것)
+- Vite 6, `base: "/"` (BrowserRouter의 중첩 경로에서 에셋이 깨지지 않도록 절대 경로. file:// 직접 열기는 불가)
+- react-router-dom **BrowserRouter** — `vercel.json`의 rewrite로 모든 경로를 index.html에 연결
+- `@vercel/analytics` — `<Analytics />`가 App에 포함. Vercel 대시보드에서 Web Analytics를 켜야 실제 수집됨
+  (로컬/프리뷰에서 `/_vercel/insights/script.js` 404는 정상 — Vercel 엣지에만 존재)
 
 ## 디자인 시스템 (Apple 웹 스타일 — getdesign apple 스펙 기반)
 - 단일 액센트: Action Blue `#0066cc` (다크 표면에서는 Sky Blue `#2997ff`)
