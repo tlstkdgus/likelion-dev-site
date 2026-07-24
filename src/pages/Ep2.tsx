@@ -1,14 +1,10 @@
 import EpLayout from "../components/EpLayout";
 import Ep2Cards from "../components/Ep2Cards";
+import Ep2LibFw from "../components/Ep2LibFw";
+import Ep2Pipeline from "../components/Ep2Pipeline";
 import Ep2Quiz from "../components/Ep2Quiz";
 import { DemoPanel, DefRow, LessonSection, Note, Reveal } from "../components/ui";
 import { DeployPipeline, KanbanBoard } from "../components/diagrams";
-
-const DEPLOY = [
-  ["로컬", "개발자 본인 컴퓨터에서 개발"],
-  ["스테이징", "리허설 매장에서 최종 점검"],
-  ["운영 (프로덕션)", "진짜 매장 — 고객 앞으로"],
-] as const;
 
 const SCHEDULE = [
   { term: "이슈 · 티켓", mean: "할 일 카드", desc: "\"이슈로 올려주세요\" = 기록으로 남겨주세요" },
@@ -20,7 +16,7 @@ const SCHEDULE = [
 
 export default function Ep2() {
   return (
-    <EpLayout index={1}
+    <EpLayout index={1} demoCount={3}
       cheat={'"이거 핫픽스로 나가야 하나요, 다음 릴리즈에 포함해도 되나요?"'}
       cheatWhy="긴급도를 스스로 판단해 옵션을 제시하는 질문입니다. 이 한 문장이면 개발팀이 여러분을 다시 보게 됩니다.">
 
@@ -43,19 +39,31 @@ export default function Ep2() {
           <Reveal><Ep2Cards /></Reveal>
         </LessonSection>
 
-        <LessonSection no="03" title="배포 — 신메뉴가 매장에 나가는 길"
-          desc="코드가 실제 서비스에 반영되는 과정에는 정해진 단계가 있습니다.">
+        <LessonSection no="03" title="라이브러리와 프레임워크 — 헷갈리는 두 단어"
+          desc="둘 다 '남이 만들어 둔 것을 가져다 쓴다'는 점은 같습니다. 결정적 차이는 딱 하나, 누가 주도권을 갖느냐입니다.">
+          <DemoPanel title="누가 누구를 부르는가"
+            sub="두 버튼을 번갈아 눌러 호출 방향이 어떻게 뒤집히는지 확인해 보세요. 이 방향이 모든 차이를 만듭니다.">
+            <Ep2LibFw />
+          </DemoPanel>
+          <Note label="왜 이걸 알아야 하나">
+            일정 감각이 완전히 달라지기 때문입니다. <b>"라이브러리 하나 추가할게요"</b>는 양념 하나 더 사는 수준이지만,
+            <b> "프레임워크를 바꿔야 해요"</b>는 주방을 통째로 뜯어고치는 대공사입니다. 같은 '도입'이라는 말이어도 규모가 전혀 다릅니다.
+          </Note>
+        </LessonSection>
+
+        <LessonSection no="04" title="배포와 스테이징 — 신메뉴가 매장에 나가는 길"
+          desc="코드는 개발자 컴퓨터에서 곧바로 고객에게 가지 않습니다. 반드시 리허설을 거칩니다.">
           <DeployPipeline />
+          <DemoPanel title="배포 파이프라인 시뮬레이터"
+            sub="'다음 단계로 배포'를 눌러 코드를 옮겨 보세요. 단계마다 누가 보는지, 사고가 나면 어떻게 되는지가 완전히 달라집니다.">
+            <Ep2Pipeline />
+          </DemoPanel>
+          <Note label="여러분의 차례는 스테이징">
+            스테이징은 실제 운영 환경을 그대로 복제해 둔 리허설 무대입니다. 고객은 접속할 수 없습니다.
+            그래서 <b>"스테이징에 올렸으니 확인해 주세요"</b>는 기획·운영이 직접 눌러보고 피드백할 시점이라는 뜻입니다.
+            여기서 잡은 버그는 사고가 아니지만, 운영에서 잡힌 버그는 장애입니다.
+          </Note>
           <Reveal>
-            <div className="grid grid-cols-3 max-md:grid-cols-1 gap-4 mt-6">
-              {DEPLOY.map(([t, d], i) => (
-                <div key={t} className={`rounded-[14px] border px-5 py-5 ${i === 2 ? "border-primary bg-[#eaf3ff]" : "border-hairline"}`}>
-                  <p className="text-[12px] font-semibold text-ink-48 tabular-nums">STEP {i + 1}</p>
-                  <p className={`text-[16px] font-semibold mt-1.5 ${i === 2 ? "text-primary" : ""}`}>{t}</p>
-                  <p className="text-[13px] text-ink-48 mt-1 leading-[1.5]">{d}</p>
-                </div>
-              ))}
-            </div>
             <div className="grid grid-cols-2 max-md:grid-cols-1 gap-4 mt-4">
               <div className="rounded-[14px] border border-hairline px-5 py-4">
                 <p className="text-[15px] font-semibold text-primary">롤백</p>
@@ -72,7 +80,7 @@ export default function Ep2() {
           </Reveal>
         </LessonSection>
 
-        <LessonSection no="04" title="일정 회의에서 나오는 말"
+        <LessonSection no="05" title="일정 회의에서 나오는 말"
           desc="일정과 범위를 이야기할 때 반복적으로 등장하는 다섯 가지입니다.">
           <KanbanBoard />
           <Reveal>
@@ -84,8 +92,9 @@ export default function Ep2() {
           </Reveal>
         </LessonSection>
 
-        <LessonSection no="05" title="확인 퀴즈"
+        <LessonSection no="06" title="확인 퀴즈"
           desc="여섯 문제 중 네 문제 이상 맞히면 수료 기준을 충족합니다.">
+
           <DemoPanel title="용어 퀴즈"
             sub="보기를 클릭하면 즉시 채점됩니다. 다시 풀기는 횟수 제한이 없습니다.">
             <Ep2Quiz />
