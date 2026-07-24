@@ -1,8 +1,22 @@
 import EpLayout from "../components/EpLayout";
+import Ep5ApiBuilder from "../components/Ep5ApiBuilder";
 import Ep5Roulette from "../components/Ep5Roulette";
 import Icon from "../components/Icon";
 import { DemoPanel, LessonSection, Note, Reveal } from "../components/ui";
 import { TokenPredict, VibeLoop } from "../components/diagrams";
+
+const API_PARTS = [
+  ["target", "주소 (엔드포인트)", "무엇에 대한 요청인가 — 예: /menus"],
+  ["refresh", "방식 (메서드)", "그것을 어떻게 할 것인가 — 조회·생성·수정·삭제"],
+  ["file", "주고받을 내용", "무엇을 보내고 무엇을 돌려받을 것인가"],
+] as const;
+
+const METHODS = [
+  ["GET", "조회", "\"메뉴판 좀 보여주세요\"", "#1a7a38", "#e8f7ee"],
+  ["POST", "생성", "\"신메뉴 등록해 주세요\"", "#0066cc", "#eaf3ff"],
+  ["PUT", "수정", "\"이 메뉴 이름 바꿔 주세요\"", "#c99a10", "#fbf6e3"],
+  ["DELETE", "삭제", "\"이 메뉴 빼 주세요\"", "#b3402f", "#fdeeee"],
+] as const;
 
 const TERMS = [
   ["pen", "프롬프트", "AI에게 전달하는 주문서"],
@@ -24,7 +38,7 @@ const YOURS = [
 
 export default function Ep5() {
   return (
-    <EpLayout index={4}
+    <EpLayout index={4} demoCount={2}
       cheat={'"이건 바이브 코딩으로 프로토타입 먼저 만들어보고 판단하면 어때요?"'}
       cheatWhy="아이디어 논쟁을 30분 만에 끝내는 말입니다. 말로 설명하는 대신 움직이는 것을 보여주는 쪽이 언제나 빠릅니다.">
 
@@ -66,7 +80,42 @@ export default function Ep5() {
           <VibeLoop />
         </LessonSection>
 
-        <LessonSection no="03" title="그럼 개발자는 필요 없어지는가"
+        <LessonSection no="03" title="그럼 주방은 누가 만드나 — API 설계"
+          desc="방금 만든 룰렛은 홀(화면)만 만든 것입니다. 메뉴를 저장하고 꺼내오려면 주방으로 보낼 '주문서 양식'을 정해야 합니다. 그 양식을 정하는 일이 바로 API를 만드는 일입니다.">
+          <Reveal>
+            <div className="grid grid-cols-3 max-md:grid-cols-1 gap-4 mt-6">
+              {API_PARTS.map(([ic, t, d]) => (
+                <div key={t} className="rounded-[14px] border border-hairline px-5 py-5">
+                  <span className="text-primary"><Icon name={ic as never} size={20} /></span>
+                  <p className="text-[15.5px] font-semibold mt-2.5">{t}</p>
+                  <p className="text-[13px] text-ink-48 mt-1 leading-[1.5]">{d}</p>
+                </div>
+              ))}
+            </div>
+            <div className="grid grid-cols-4 max-md:grid-cols-2 gap-3 mt-4">
+              {METHODS.map(([m, k, ex, c, bg]) => (
+                <div key={m} className="rounded-[14px] border border-hairline px-4 py-4">
+                  <span className="text-[11px] font-semibold rounded px-1.5 py-0.5" style={{ color: c, background: bg }}>{m}</span>
+                  <p className="text-[14px] font-semibold mt-2">{k}</p>
+                  <p className="text-[12px] text-ink-48 mt-1 leading-[1.45]">{ex}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <DemoPanel title="주문서 양식 만들기"
+            sub="점심 룰렛에 '메뉴 관리' 기능을 붙인다고 가정합니다. 하고 싶은 일을 고르고 담을 정보를 켜면, 완성된 API 명세가 조립됩니다.">
+            <Ep5ApiBuilder />
+          </DemoPanel>
+
+          <Note label="개발자와 이렇게 이야기하세요">
+            API를 만든다는 것은 결국 <b>주소·방식·주고받을 내용을 합의하는 일</b>입니다.
+            그래서 <b>"이 기능 API 스펙 먼저 맞춰볼까요?"</b>라고 물으면, 화면을 그리기 전에 무엇을 주고받을지부터 정하자는 뜻이 됩니다.
+            이 합의가 빠를수록 프론트와 백엔드가 동시에 작업할 수 있습니다.
+          </Note>
+        </LessonSection>
+
+        <LessonSection no="04" title="그럼 개발자는 필요 없어지는가"
           desc="결론부터 — 아닙니다. 대신 개발자의 일이 '타이핑'에서 '판단과 검토'로 이동하고 있습니다.">
           <Reveal>
             <div className="grid grid-cols-3 max-md:grid-cols-1 gap-4 mt-6">
@@ -81,7 +130,7 @@ export default function Ep5() {
           </Reveal>
         </LessonSection>
 
-        <LessonSection no="04" title="여러분이 가져갈 수 있는 영역"
+        <LessonSection no="05" title="여러분이 가져갈 수 있는 영역"
           desc="완성도 높은 서비스는 여전히 개발자의 일이지만, '장난감 수준'까지는 이제 누구나 만들 수 있습니다.">
           <Reveal>
             <div className="grid grid-cols-3 max-md:grid-cols-1 gap-4 mt-6">
