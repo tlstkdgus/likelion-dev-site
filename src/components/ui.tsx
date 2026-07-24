@@ -107,8 +107,9 @@ export function Note({ label = "핵심", children, dark = false, warn = false }:
     <div className={`mt-8 rounded-[14px] border px-6 py-5 text-[15.5px] leading-[1.65] ${
       warn ? "border-[#e8b3ab] bg-[#fdf6f5]"
       : dark ? "border-[#3a3a3c] bg-tile2" : "border-hairline bg-white"}`}>
-      <span className={`font-semibold mr-2 ${warn ? "text-[#b3402f]" : dark ? "text-skylink" : "text-primary"}`}>{label}</span>
-      {children}
+      <p className={`text-[13px] font-semibold tracking-[0.2px] mb-2 ${
+        warn ? "text-[#b3402f]" : dark ? "text-skylink" : "text-primary"}`}>{label}</p>
+      <div>{children}</div>
     </div>
   );
 }
