@@ -25,6 +25,9 @@ Cowork(Claude)에서 제작을 시작했고, 이 시점부터 Claude Code로 이
 - `src/components/EpLayout.tsx` — 회차 페이지 공통 레이아웃
 - `src/components/Ep*.tsx` — 인터랙티브 데모: Ep1Journey(로그인 왕복), Ep2Cards(플립카드)/Ep2Quiz(퀴즈), Ep3GitSim(SVG Git 시뮬레이터), Ep4Builder(요청 빌더), Ep5Roulette(canvas 룰렛+폭죽), Ep6Agent(챗봇vs에이전트)
 - `src/components/ui.tsx` — Reveal(스크롤 등장), Pill, Tile, SectionHead, DemoPanel
+- `src/pages/Glossary.tsx` · `Guides.tsx` · `AiPractice.tsx` — 부록(용어 사전 · AI 툴 가이드 · AI 실전). 용어 사전의 ep 7은 「부록 · AI 실전」이고 `/ai-practice`로 연결
+- `src/components/Ai*.tsx` — AI 실전 데모: AiPromptBuilder(프롬프트 6요소 빌더), AiFactCheck(AI 답변 검수), AiLiteracyQuiz(해설형 퀴즈)
+- AI 실전 페이지의 법·제도 내용(AI 기본법 등)은 2026년 10월 기준. 갱신할 때 원문을 다시 확인하고 「법률 자문 아님」 문구를 유지
 
 ## 명령어
 - `npm run dev` — 개발 서버

@@ -64,11 +64,26 @@ const TERMS: Term[] = [
   { ep: 6, term: "MCP", mean: "AI용 표준 연결 규격 (USB-C)", desc: "\"그 도구 MCP 돼요?\" = \"AI랑 연결돼요?\" 사실상 업계 표준." },
   { ep: 6, term: "에이전틱 코딩", mean: "바이브 코딩의 다음 단계", desc: "AI가 코드를 쓰고 테스트하고 고치며, 사람은 검토합니다. Claude Code, Cursor." },
   { ep: 6, term: "few-shot", mean: "좋은 예시를 붙여 요청하기", desc: "'이런 느낌'이라는 말보다 예시 파일 하나가 강력합니다." },
+  // 부록 · AI 실전
+  { ep: 7, term: "컨텍스트 윈도우", mean: "조리대 넓이", desc: "AI가 한 번에 보고 다룰 수 있는 분량. 넘치면 앞부분이 밀려나 '아까 한 말'을 잊습니다." },
+  { ep: 7, term: "지식 컷오프", mean: "요리 학교 졸업 시점", desc: "AI가 학습한 시점. 그 이후의 일은 모르면서도 옛 정보를 현재처럼 말하기도 합니다." },
+  { ep: 7, term: "온도 (temperature)", mean: "즉흥 정도", desc: "낮추면 일관된 답, 높이면 다양한 답. 낮춰도 사실 정확도가 올라가지는 않습니다." },
+  { ep: 7, term: "임베딩", mean: "맛 지도", desc: "글의 뜻을 좌표로 바꾼 것. 단어가 달라도 뜻이 비슷한 글을 찾을 수 있게 해 줍니다." },
+  { ep: 7, term: "RAG", mean: "레시피북 펴 놓고 요리하기", desc: "질문에 맞는 문서를 찾아 AI에게 함께 넣어주고, 그걸 근거로 답하게 하는 방식." },
+  { ep: 7, term: "도구 호출", mean: "주문서로 장보기 시키기", desc: "AI는 직접 실행하지 않고 '이렇게 실행해 달라'는 요청을 쓰고, 연결된 프로그램이 실행합니다." },
+  { ep: 7, term: "프롬프트 인젝션", mean: "문서 속에 숨은 지시", desc: "AI가 읽는 메일·문서·웹페이지에 숨긴 문장으로 AI의 행동을 조작하는 공격." },
+  { ep: 7, term: "RLHF", mean: "손님 평가를 반영해 다듬기", desc: "사람이 더 좋다고 고른 답 쪽으로 AI를 학습시키는 단계. 맞장구치는 경향이 생기기도 합니다." },
+  { ep: 7, term: "단계별 사고 (CoT)", mean: "풀이 과정부터 쓰게 하기", desc: "결론 전에 조건을 하나씩 확인하게 하면 계산·판단 실수가 줄어듭니다." },
+  { ep: 7, term: "루브릭", mean: "채점 기준표", desc: "결과물이 통과하려면 무엇을 만족해야 하는지 미리 적어 둔 표. 검증이 체크리스트 대조로 바뀝니다." },
+  { ep: 7, term: "AI 기본법", mean: "2026년 1월 22일 시행된 한국의 AI 법", desc: "생성형 AI 고지·결과물 표시, 딥페이크 표시, 고영향 AI의 위험 관리 의무 등을 담고 있습니다. (법률 자문 아님)" },
 ];
 
 const EP_LABEL: Record<number, string> = {
-  1: "1강 · 구조", 2: "2강 · 용어", 3: "3강 · Git", 4: "4강 · 협업", 5: "5강 · AI 기초", 6: "6강 · AI 트렌드",
+  1: "1강 · 구조", 2: "2강 · 용어", 3: "3강 · Git", 4: "4강 · 협업", 5: "5강 · AI 기초", 6: "6강 · AI 트렌드", 7: "부록 · AI 실전",
 };
+
+/** 회차별 「강의 보기」 링크. 부록(7)은 강의가 아니라 부록 페이지로 보냅니다. */
+const EP_PATH = (n: number) => (n === 7 ? "/ai-practice" : `/lesson/${n}`);
 
 export default function Glossary() {
   const [q, setQ] = useState("");
@@ -95,7 +110,7 @@ export default function Glossary() {
           <p className="text-[13px] font-semibold text-primary tracking-[0.4px]">부록 · 언제든 찾아보세요</p>
           <h1 className="text-[40px] max-md:text-[28px] font-semibold leading-[1.15] tracking-[-0.6px] mt-4">용어 사전</h1>
           <p className="text-[17px] text-ink-48 mt-4 max-w-[680px] leading-[1.6] tracking-[-0.2px]">
-            6강에서 배운 용어 {TERMS.length}개를 한 곳에 모았습니다.
+            6강과 부록에서 다룬 용어 {TERMS.length}개를 한 곳에 모았습니다.
             회의에서 모르는 말이 나오면 여기서 검색하세요.
           </p>
 
@@ -108,7 +123,7 @@ export default function Glossary() {
             </div>
           </div>
           <div className="flex gap-2 mt-4 flex-wrap">
-            {[0, 1, 2, 3, 4, 5, 6].map((n) => (
+            {[0, 1, 2, 3, 4, 5, 6, 7].map((n) => (
               <button key={n} onClick={() => setEp(n)}
                 className={`rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-[-0.15px] border transition-colors cursor-pointer ${
                   ep === n ? "bg-primary text-white border-primary" : "bg-white text-ink-80 border-hairline hover:border-primary"}`}>
@@ -129,8 +144,8 @@ export default function Glossary() {
           <section key={epNo} className="mb-12 last:mb-0">
             <div className="flex items-baseline justify-between pb-3 border-b border-hairline">
               <h2 className="text-[20px] font-semibold tracking-[-0.3px]">{EP_LABEL[epNo]}</h2>
-              <Link to={`/lesson/${epNo}`} className="text-[13px] text-primary no-underline inline-flex items-center gap-1">
-                강의 보기 <Icon name="arrow" size={13} />
+              <Link to={EP_PATH(epNo)} className="text-[13px] text-primary no-underline inline-flex items-center gap-1">
+                {epNo === 7 ? "부록 보기" : "강의 보기"} <Icon name="arrow" size={13} />
               </Link>
             </div>
             <Reveal>

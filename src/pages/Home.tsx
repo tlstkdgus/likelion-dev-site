@@ -23,6 +23,12 @@ const UNFIT = [
   "현직 개발자 — 이미 다 아는 내용입니다",
 ];
 
+const APPENDIX: [string, "zap" | "book" | "wrench", string, string][] = [
+  ["/ai-practice", "zap", "AI 실전 — 잘 시키고 확인하기", "프롬프트 6요소 빌더 · AI 답변 검수 · 셀프 체크 10문제"],
+  ["/glossary", "book", "용어 사전", "전 회차 용어를 검색과 회차 필터로"],
+  ["/guides", "wrench", "AI 툴 활용 가이드", "옵시디언 · 커넥터 · 매니패스트 따라 하기"],
+];
+
 const FAQ = [
   ["개발을 정말 하나도 몰라도 되나요?", "네. 이 과정은 코드를 한 줄도 쓰지 않습니다. 모든 개념을 식당 운영에 비유해 설명하고, 실습도 클릭만으로 진행됩니다."],
   ["실습은 어떻게 진행되나요?", "각 강의 페이지에 브라우저에서 바로 동작하는 실습이 내장되어 있습니다. 별도 설치나 계정이 필요 없습니다."],
@@ -119,6 +125,18 @@ export default function Home() {
                     <span className="inline-flex items-center gap-1.5 text-primary"><Icon name="play" size={13} /> 실습</span>
                     <Icon name="arrow" size={16} className="text-[#c7c7cc] group-hover:text-primary transition-colors" />
                   </span>
+                </Link>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal>
+            <p className="text-[15px] font-semibold mt-10">부록</p>
+            <div className="grid grid-cols-3 max-md:grid-cols-1 gap-4 mt-3">
+              {APPENDIX.map(([to, ic, t, d]) => (
+                <Link key={to} to={to} className="group no-underline text-ink rounded-[14px] border border-hairline px-5 py-5 hover:bg-pearl transition-colors">
+                  <span className="text-primary"><Icon name={ic} size={20} /></span>
+                  <span className="block text-[15.5px] font-semibold tracking-[-0.25px] mt-2.5">{t}</span>
+                  <span className="block text-[13px] text-ink-48 mt-1 leading-[1.5]">{d}</span>
                 </Link>
               ))}
             </div>

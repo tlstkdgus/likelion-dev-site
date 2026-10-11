@@ -47,7 +47,7 @@ React + TypeScript + Tailwind CSS v4 + Vite로 만들었고, 디자인은 Apple 
 
 ### 4. 용어 사전 — 수업이 끝난 뒤에도
 
-6강에 흩어진 용어 51개를 한 페이지에 모았습니다. 검색과 회차별 필터 지원.
+6강과 부록에 흩어진 용어 62개를 한 페이지에 모았습니다. 검색과 회차별 필터 지원.
 
 ![용어 사전](docs/screenshots/09-glossary.png)
 
@@ -76,6 +76,7 @@ React + TypeScript + Tailwind CSS v4 + Vite로 만들었고, 디자인은 Apple 
 |---|---|
 | 용어 사전 (`/glossary`) | 전 회차 용어 51개 · 검색 + 회차 필터 |
 | 활용 가이드 (`/guides`) | 옵시디언+Claude, Claude 커넥터, 매니패스트 |
+| AI 실전 (`/ai-practice`) | 5·6강 심화 — 원리 10가지(식당 비유), 프롬프트 6요소 빌더, AI 답변 검수 실습, 검증 체크리스트, 피드백 쓰는 법, 보안·법(AI 기본법), 연습 과제 4개, 셀프 체크 10문제 |
 
 ---
 

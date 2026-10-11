@@ -10,6 +10,7 @@ import Ep5 from "./pages/Ep5";
 import Ep6 from "./pages/Ep6";
 import Glossary from "./pages/Glossary";
 import Guides from "./pages/Guides";
+import AiPractice from "./pages/AiPractice";
 
 export const EPISODES = [
   { path: "/lesson/1", no: 1, short: "소프트웨어 구조", title: "소프트웨어는 어떻게 만들어지는가", minutes: 35,
@@ -66,6 +67,11 @@ function GNav() {
               pathname === "/guides" ? "text-white font-semibold" : "text-[#d5d5da] opacity-80 hover:opacity-100"}`}>
             활용 가이드
           </Link>
+          <Link to="/ai-practice"
+            className={`text-[12.5px] tracking-[-0.12px] no-underline whitespace-nowrap transition-opacity ${
+              pathname === "/ai-practice" ? "text-white font-semibold" : "text-[#d5d5da] opacity-80 hover:opacity-100"}`}>
+            AI 실전
+          </Link>
         </div>
       </div>
     </nav>
@@ -97,6 +103,8 @@ function Footer() {
           <Link to="/glossary" className="inline-block text-[13px] text-primary no-underline mt-2">용어 사전 바로가기 →</Link>
           <br />
           <Link to="/guides" className="inline-block text-[13px] text-primary no-underline mt-1">AI 툴 활용 가이드 →</Link>
+          <br />
+          <Link to="/ai-practice" className="inline-block text-[13px] text-primary no-underline mt-1">AI 실전 — 잘 시키고 확인하기 →</Link>
         </div>
       </div>
       <p className="max-w-[1120px] mx-auto text-[11.5px] text-ink-48 mt-10 pt-5 border-t border-hairline">
@@ -121,6 +129,7 @@ export default function App() {
         <Route path="/lesson/6" element={<Ep6 />} />
         <Route path="/glossary" element={<Glossary />} />
         <Route path="/guides" element={<Guides />} />
+        <Route path="/ai-practice" element={<AiPractice />} />
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
